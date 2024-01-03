@@ -10,7 +10,7 @@
         "check": "biome check src --apply",
         "pretest": "npm run build",
         "posttest": "npm run lint",
-        "test": "jest",
+        "test": "jest"
     },
     "keywords": [],
     "author": "",
@@ -26,7 +26,5 @@
         "k6": "^0.0.0",
         "ts-jest": "^29.1.1",
         "typescript": "~5.2.0"
-    },
-    "dependencies": {
     }
 }
