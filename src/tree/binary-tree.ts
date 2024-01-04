@@ -3,8 +3,8 @@ import { binaryNode } from './node';
 export class binaryTree<T> {
 	root: binaryNode<T> | null;
 
-  constructor() {
-		this.root = null;
+  constructor(rootNode: binaryNode<T> | null = null) {
+		this.root = rootNode;
 	}
 	setRoot(value: T): void {
 		this.root = new binaryNode<T>(value);
@@ -28,6 +28,9 @@ export class binaryTree<T> {
 	find(value: T): binaryNode<T> | null {
 		return this.findIn(this.root, value);
 	}
+  remove(value: T): void {
+    this.removeIn(this.root, value);
+  }
 	show(node: binaryNode<T> | null,prefix = ''): void {
 		console.log('Tree description:');
 		console.log('├── LEFT NODE VALUE  └── RIGHT NODE VALUE');
@@ -51,13 +54,15 @@ export class binaryTree<T> {
 			if (node.getLeft()) {
 				this.addNodeTo(node.getLeft(), value);
 			} else {
-				node.setLeft(value);
+        const newNode = new binaryNode<T>(value);
+				node.setLeft(newNode);
 			}
 		} else {
 			if (node.getRight()) {
 				this.addNodeTo(node.getRight(), value);
 			} else {
-				node.setRight(value);
+        const newNode = new binaryNode<T>(value);
+				node.setRight(newNode);
 			}
 		}
 	}
@@ -67,4 +72,18 @@ export class binaryTree<T> {
 		if (value < node.getValue()) return this.findIn(node.getLeft(), value);
 		return this.findIn(node.getRight(), value);
 	}
+  private removeIn(node: binaryNode<T> | null, value: T): boolean {
+    let wasRemoved: boolean;
+    if (!node) return false;
+    if (value === node.getValue()) return node.remove();
+    if (value < node.getValue()) {
+      wasRemoved = this.removeIn(node.getLeft(), value);
+      if (!wasRemoved) node.left = null;
+    }
+    else {
+      wasRemoved = this.removeIn(node.getRight(), value);
+      if (!wasRemoved) node.right = null;
+    }
+    return true;
+  }
 }
