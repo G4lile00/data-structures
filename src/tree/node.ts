@@ -28,15 +28,7 @@ export class binaryNode<T> {
 		return this.value;
 	}
 
-	show(prefix: string, isLeft: boolean): void {
-		console.log(prefix + (isLeft ? '├── ' : '└── ') + this.value);
-		if (this.left) {
-			this.left.show(prefix + '│   ', true);
-		}
-		if (this.right) {
-			this.right.show(prefix + '│   ', false);
-		}
-		if (!this.right) console.log(prefix + '│   ' + '├── null');
-		if (!this.left) console.log(prefix + '│   ' + '└── null');
-	}
+	show(): void {
+	 console.log(this.value); 
+  }
 }
