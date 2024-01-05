@@ -41,9 +41,10 @@ To get started with this repository, follow these steps:
    ```
 2. Install the necessary dependencies:
 
-   npm - ```bash
-           npm install
-         ```
+   npm -
+   ```bash
+   npm install
+   ```
 
 ## Contributing
 
