@@ -1,6 +1,6 @@
 import { binaryNode } from './node';
 
-export class binaryTree<T> {
+export class BinaryTree<T> {
 	root: binaryNode<T> | null;
 
   constructor(rootNode: binaryNode<T> | null = null) {
@@ -19,10 +19,10 @@ export class binaryTree<T> {
 			this.addNodeTo(this.root, value);
 		}
 	}
-	getDeapth(node: binaryNode<T> | null): number {
+	getDepth(node: binaryNode<T> | null): number {
 		if (!node) return 0;
-		const leftDeapth = this.getDeapth(node.getLeft());
-		const rightDeapth = this.getDeapth(node.getRight());
+		const leftDeapth = this.getDepth(node.getLeft());
+		const rightDeapth = this.getDepth(node.getRight());
 		return Math.max(leftDeapth, rightDeapth) + 1;
 	}
 	find(value: T): binaryNode<T> | null {
@@ -34,7 +34,7 @@ export class binaryTree<T> {
 	show(node: binaryNode<T> | null,prefix = ''): void {
 		console.log('Tree description:');
 		console.log('├── LEFT NODE VALUE  └── RIGHT NODE VALUE');
-		console.log(`Tree struct: ${this.getDeapth(node)} deapth `);
+		console.log(`Tree struct: ${this.getDepth(node)} deapth `);
 		console.log('');
 		this.showTree(false, `${prefix}     `, node);
 	}
